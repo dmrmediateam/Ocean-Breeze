@@ -1427,9 +1427,9 @@ button {
   position: relative;
   z-index: 1;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -1448,9 +1448,9 @@ button {
   margin-top: 14px;
   max-width: 28rem;
   font-family: var(--font-cormorant), serif;
-  font-size: 36px;
-  font-weight: 300;
-  line-height: 1;
+  font-size: clamp(36px, 5vw, 46px);
+  font-weight: 400;
+  line-height: 0.98;
   color: var(--color-bg);
 }
 
@@ -1463,14 +1463,14 @@ button {
   z-index: 1;
   margin-top: 16px;
   max-width: 36rem;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .enquiry-modal__dialog--request .enquiry-card__body {
-  color: rgba(26, 26, 26, 0.66);
+  color: rgba(26, 26, 26, 0.78);
 }
 
 .enquiry-form {
@@ -1496,9 +1496,9 @@ button {
 .enquiry-form input,
 .enquiry-form textarea {
   width: 100%;
-  padding: 14px 0;
+  padding: 16px 0;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--color-white);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -1520,12 +1520,12 @@ button {
 
 .enquiry-form input::placeholder,
 .enquiry-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.46);
 }
 
 .enquiry-modal__dialog--request .enquiry-form input::placeholder,
 .enquiry-modal__dialog--request .enquiry-form textarea::placeholder {
-  color: rgba(26, 26, 26, 0.34);
+  color: rgba(26, 26, 26, 0.5);
 }
 
 .enquiry-form input:focus,
@@ -1547,6 +1547,87 @@ button {
   margin: 40px auto 0;
   padding: 16px 48px;
   color: var(--color-bg);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+}
+
+.enquiry-form__submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.enquiry-form__status {
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.enquiry-form__status--success {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.enquiry-form__status--error {
+  color: rgba(255, 208, 190, 0.92);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__status--success {
+  color: rgba(26, 26, 26, 0.78);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__status--error {
+  color: rgba(140, 58, 30, 0.92);
+}
+
+.enquiry-form__thankyou {
+  margin-top: 28px;
+  padding: 24px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__thankyou {
+  border-color: rgba(153, 120, 57, 0.18);
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.enquiry-form__thankyou-kicker {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.enquiry-form__thankyou-title {
+  margin-top: 12px;
+  font-family: var(--font-cormorant), serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-bg);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__thankyou-title {
+  color: var(--color-text);
+}
+
+.enquiry-form__thankyou-body {
+  margin-top: 14px;
+  max-width: 32rem;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__thankyou-body {
+  color: rgba(26, 26, 26, 0.76);
+}
+
+.enquiry-form__thankyou .enquiry-form__submit {
+  margin-top: 28px;
 }
 
 .enquiry-modal__dialog--request .enquiry-form__submit {

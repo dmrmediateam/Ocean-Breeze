@@ -1,5 +1,6 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
 const attributionFieldNames = [
@@ -37,7 +38,12 @@ type LeadFormConfig = {
   subject: string;
   submitLabel: string;
   theme: "request" | "showing";
+  endpoint: string;
+  successTitle: string;
+  successBody: string;
 };
+
+type LeadFormStatus = "idle" | "submitting" | "success" | "error";
 
 const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
   request_details: {
@@ -47,6 +53,10 @@ const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
     subject: "Ocean Breeze | Request Details",
     submitLabel: "Request Details",
     theme: "request",
+    endpoint: "/api/request-details",
+    successTitle: "Thank you for your interest",
+    successBody:
+      "Your request has been received. The Ocean Breeze sales team will share the brochure, pricing context, and ownership details shortly.",
   },
   schedule_showing: {
     eyebrow: "Schedule a Showing",
@@ -55,6 +65,10 @@ const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
     subject: "Ocean Breeze | Schedule a Showing",
     submitLabel: "Schedule a Showing",
     theme: "showing",
+    endpoint: "/api/schedule-showing",
+    successTitle: "Your showing request is in",
+    successBody:
+      "Thank you. The team has your preferred timing and will follow up to confirm the best showing window for Ocean Breeze.",
   },
 };
 
@@ -72,6 +86,46 @@ function LeadForm({
   onClose: () => void;
 }) {
   const config = leadFormConfig[type];
+  const [submitStatus, setSubmitStatus] = useState<LeadFormStatus>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    try {
+      setSubmitStatus("submitting");
+      setSubmitMessage("");
+      (
+        window as Window & {
+          populateOceanBreezeAttribution?: (form: HTMLFormElement) => unknown;
+        }
+      ).populateOceanBreezeAttribution?.(form);
+
+      const payload = Object.fromEntries(new FormData(form).entries());
+      const response = await fetch(config.endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setSubmitStatus("success");
+      setSubmitMessage(config.successBody);
+      form.reset();
+    } catch {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        "We could not send your request right now. Please try again in a moment.",
+      );
+    }
+  };
 
   return (
     <div
@@ -103,9 +157,10 @@ function LeadForm({
 
       <form
         className="enquiry-form"
-        action="mailto:info@oceanbreezetci.com"
-        method="GET"
+        action={config.endpoint}
+        method="POST"
         data-lead-form={type}
+        onSubmit={handleSubmit}
       >
         <input type="hidden" name="subject" value={config.subject} />
         <AttributionFields />
@@ -139,9 +194,39 @@ function LeadForm({
           }
         />
 
-        <button type="submit" className="enquiry-form__submit">
-          {config.submitLabel}
-        </button>
+        {submitStatus === "success" ? (
+          <div className="enquiry-form__thankyou" aria-live="polite">
+            <p className="enquiry-form__thankyou-kicker">{config.eyebrow}</p>
+            <h4 className="enquiry-form__thankyou-title">{config.successTitle}</h4>
+            <p className="enquiry-form__thankyou-body">{submitMessage}</p>
+            <button
+              type="button"
+              className="enquiry-form__submit"
+              onClick={onClose}
+            >
+              Continue Browsing
+            </button>
+          </div>
+        ) : null}
+
+        {submitStatus !== "success" && submitMessage ? (
+          <p
+            className={`enquiry-form__status enquiry-form__status--${submitStatus}`}
+            aria-live="polite"
+          >
+            {submitMessage}
+          </p>
+        ) : null}
+
+        {submitStatus !== "success" ? (
+          <button
+            type="submit"
+            className="enquiry-form__submit"
+            disabled={submitStatus === "submitting"}
+          >
+            {submitStatus === "submitting" ? "Sending..." : config.submitLabel}
+          </button>
+        ) : null}
       </form>
     </div>
   );

@@ -276,6 +276,16 @@ const trackingScript = String.raw`(() => {
     });
   }
 
+  window.populateOceanBreezeAttribution = (form) => {
+    const attribution = updateAttribution();
+
+    if (form instanceof HTMLFormElement) {
+      populateForm(form, attribution);
+    }
+
+    return attribution;
+  };
+
   const attribution = updateAttribution();
   populateForms(attribution);
   document.addEventListener("submit", handleSubmit);
