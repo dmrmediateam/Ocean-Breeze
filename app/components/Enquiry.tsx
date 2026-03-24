@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const attributionFieldNames = [
   "utm_source",
   "utm_medium",
@@ -22,7 +26,37 @@ const attributionFieldNames = [
   "referrer",
   "first_touch_at",
   "last_touch_at",
-];
+] as const;
+
+type LeadFormType = "request_details" | "schedule_showing";
+
+type LeadFormConfig = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  subject: string;
+  submitLabel: string;
+  theme: "request" | "showing";
+};
+
+const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
+  request_details: {
+    eyebrow: "Request Details",
+    title: "Receive the full listing package",
+    body: "Request pricing support material, ownership details, and a direct response from the Ocean Breeze sales team.",
+    subject: "Ocean Breeze | Request Details",
+    submitLabel: "Request Details",
+    theme: "request",
+  },
+  schedule_showing: {
+    eyebrow: "Schedule a Showing",
+    title: "Arrange a private tour",
+    body: "Book a confidential showing and share your preferred timing so the team can coordinate a tailored walkthrough.",
+    subject: "Ocean Breeze | Schedule a Showing",
+    submitLabel: "Schedule a Showing",
+    theme: "showing",
+  },
+};
 
 function AttributionFields() {
   return attributionFieldNames.map((name) => (
@@ -30,133 +64,212 @@ function AttributionFields() {
   ));
 }
 
-export default function Enquiry() {
+function LeadForm({
+  type,
+  onClose,
+}: {
+  type: LeadFormType;
+  onClose: () => void;
+}) {
+  const config = leadFormConfig[type];
+
   return (
-    <section className="enquiry" id="enquire">
-      <div className="enquiry__inner">
-        <p className="enquiry__heading">Take the next step</p>
-        <p className="enquiry__subtext">
-          Choose the path that fits your buying process, whether you want the
-          full investment package or a private tour of Ocean Breeze.
-        </p>
-
-        <div className="enquiry__actions">
-          <a
-            href="#request-details-form"
-            className="enquiry__action"
-            data-track-click="Request Details"
-            data-track-location="enquiry-selector"
-          >
-            Request Details
-          </a>
-          <a
-            href="#schedule-showing-form"
-            className="enquiry__action"
-            data-track-click="Schedule a Showing"
-            data-track-location="enquiry-selector"
-          >
-            Schedule a Showing
-          </a>
+    <div
+      className={`enquiry-modal__dialog enquiry-modal__dialog--${config.theme}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`${type}-title`}
+    >
+      <div className="enquiry-modal__header">
+        <div>
+          <p className="enquiry-card__eyebrow">{config.eyebrow}</p>
+          <h3 className="enquiry-card__title" id={`${type}-title`}>
+            {config.title}
+          </h3>
         </div>
 
-        <div className="enquiry__prompt">
-          Select one option to open the matching form.
-        </div>
-
-        <div className="enquiry__forms">
-          <div className="enquiry-card enquiry-card--panel" id="request-details-form">
-            <p className="enquiry-card__eyebrow">Request Details</p>
-            <h3 className="enquiry-card__title">Receive the full listing package</h3>
-            <p className="enquiry-card__body">
-              Request pricing support material, ownership details, and a direct
-              response from the Ocean Breeze sales team.
-            </p>
-
-            <form
-              className="enquiry-form"
-              action="mailto:info@oceanbreezetci.com"
-              method="GET"
-              data-lead-form="request_details"
-            >
-              <input type="hidden" name="subject" value="Ocean Breeze | Request Details" />
-              <AttributionFields />
-
-              <div className="enquiry-form__grid enquiry-form__grid--two">
-                <input type="text" name="fullName" placeholder="Full Name" />
-                <input type="email" name="email" placeholder="Email Address" />
-              </div>
-
-              <div className="enquiry-form__grid enquiry-form__grid--three">
-                <input type="text" name="phone" placeholder="Phone Number" />
-                <input type="text" name="budget" placeholder="Budget" />
-                <input
-                  type="text"
-                  name="timeline"
-                  placeholder="Purchase Timeline"
-                />
-              </div>
-
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="Tell us what details you would like to receive"
-              />
-
-              <button type="submit" className="enquiry-form__submit">
-                Request Details
-              </button>
-            </form>
-          </div>
-
-          <div className="enquiry-card enquiry-card--panel" id="schedule-showing-form">
-            <p className="enquiry-card__eyebrow">Schedule a Showing</p>
-            <h3 className="enquiry-card__title">Arrange a private tour</h3>
-            <p className="enquiry-card__body">
-              Book a confidential showing and share your preferred timing so the
-              team can coordinate a tailored walkthrough.
-            </p>
-
-            <form
-              className="enquiry-form"
-              action="mailto:info@oceanbreezetci.com"
-              method="GET"
-              data-lead-form="schedule_showing"
-            >
-              <input type="hidden" name="subject" value="Ocean Breeze | Schedule a Showing" />
-              <AttributionFields />
-
-              <div className="enquiry-form__grid enquiry-form__grid--two">
-                <input type="text" name="fullName" placeholder="Full Name" />
-                <input type="email" name="email" placeholder="Email Address" />
-              </div>
-
-              <div className="enquiry-form__grid enquiry-form__grid--three">
-                <input type="text" name="phone" placeholder="Phone Number" />
-                <input
-                  type="text"
-                  name="preferredDate"
-                  placeholder="Preferred Date"
-                />
-                <input
-                  type="text"
-                  name="preferredTime"
-                  placeholder="Preferred Time"
-                />
-              </div>
-
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="Share any travel plans or showing preferences"
-              />
-
-              <button type="submit" className="enquiry-form__submit">
-                Schedule a Showing
-              </button>
-            </form>
-          </div>
-        </div>
+        <button
+          type="button"
+          className="enquiry-modal__close"
+          onClick={onClose}
+          aria-label="Close lead form"
+        >
+          <span />
+          <span />
+        </button>
       </div>
-    </section>
+
+      <p className="enquiry-card__body">{config.body}</p>
+
+      <form
+        className="enquiry-form"
+        action="mailto:info@oceanbreezetci.com"
+        method="GET"
+        data-lead-form={type}
+      >
+        <input type="hidden" name="subject" value={config.subject} />
+        <AttributionFields />
+
+        <div className="enquiry-form__grid enquiry-form__grid--two">
+          <input type="text" name="fullName" placeholder="Full Name" />
+          <input type="email" name="email" placeholder="Email Address" />
+        </div>
+
+        {type === "request_details" ? (
+          <div className="enquiry-form__grid enquiry-form__grid--three">
+            <input type="text" name="phone" placeholder="Phone Number" />
+            <input type="text" name="budget" placeholder="Budget" />
+            <input type="text" name="timeline" placeholder="Purchase Timeline" />
+          </div>
+        ) : (
+          <div className="enquiry-form__grid enquiry-form__grid--three">
+            <input type="text" name="phone" placeholder="Phone Number" />
+            <input type="text" name="preferredDate" placeholder="Preferred Date" />
+            <input type="text" name="preferredTime" placeholder="Preferred Time" />
+          </div>
+        )}
+
+        <textarea
+          name="message"
+          rows={4}
+          placeholder={
+            type === "request_details"
+              ? "Tell us what details you would like to receive"
+              : "Share any travel plans or showing preferences"
+          }
+        />
+
+        <button type="submit" className="enquiry-form__submit">
+          {config.submitLabel}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default function Enquiry() {
+  const [activeForm, setActiveForm] = useState<LeadFormType | null>(null);
+
+  useEffect(() => {
+    const openForm = (type: LeadFormType) => {
+      setActiveForm(type);
+    };
+
+    const handleClick = (event: MouseEvent) => {
+      const origin = event.target;
+
+      if (!(origin instanceof Element)) {
+        return;
+      }
+
+      const trigger = origin.closest<HTMLElement>("[data-open-lead-form]");
+      const type = trigger?.getAttribute("data-open-lead-form");
+
+      if (type !== "request_details" && type !== "schedule_showing") {
+        return;
+      }
+
+      event.preventDefault();
+      openForm(type);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveForm(null);
+      }
+    };
+
+    const handleHash = () => {
+      if (window.location.hash === "#request-details-form") {
+        openForm("request_details");
+      }
+
+      if (window.location.hash === "#schedule-showing-form") {
+        openForm("schedule_showing");
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("hashchange", handleHash);
+    handleHash();
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("hashchange", handleHash);
+    };
+  }, []);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+
+    if (activeForm) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [activeForm]);
+
+  return (
+    <>
+      <section className="enquiry" id="enquire">
+        <div className="enquiry__inner">
+          <p className="enquiry__heading">Take the next step</p>
+          <p className="enquiry__subtext">
+            Choose the path that fits your buying process, whether you want the
+            full investment package or a private tour of Ocean Breeze.
+          </p>
+
+          <div className="enquiry__actions">
+            <button
+              type="button"
+              className="enquiry__action enquiry__action--request"
+              data-track-click="Request Details"
+              data-track-location="enquiry-section"
+              onClick={() => setActiveForm("request_details")}
+            >
+              <span className="enquiry__action-title">Request Details</span>
+              <span className="enquiry__action-caption">
+                Pricing, ownership, brochure
+              </span>
+            </button>
+
+            <button
+              type="button"
+              className="enquiry__action enquiry__action--showing"
+              data-track-click="Schedule a Showing"
+              data-track-location="enquiry-section"
+              onClick={() => setActiveForm("schedule_showing")}
+            >
+              <span className="enquiry__action-title">Schedule a Showing</span>
+              <span className="enquiry__action-caption">
+                Private tour, tailored timing
+              </span>
+            </button>
+          </div>
+
+          <div className="enquiry__prompt">
+            Open the form that matches the conversation you want to start.
+          </div>
+        </div>
+      </section>
+
+      {activeForm ? (
+        <div className="enquiry-modal">
+          <button
+            type="button"
+            className="enquiry-modal__backdrop"
+            aria-label="Close lead form"
+            onClick={() => setActiveForm(null)}
+          />
+          <div className="enquiry-modal__shell">
+            <LeadForm type={activeForm} onClose={() => setActiveForm(null)} />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }

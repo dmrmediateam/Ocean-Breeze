@@ -73,6 +73,7 @@ export default function Navbar() {
             className="navbar__reserve"
             data-track-click="Request Details"
             data-track-location="navbar"
+            data-open-lead-form="request_details"
           >
             Request Details
           </a>
@@ -107,6 +108,7 @@ export default function Navbar() {
             className="navbar__mobile-reserve"
             data-track-click="Request Details"
             data-track-location="navbar-mobile"
+            data-open-lead-form="request_details"
             onClick={() => setIsMenuOpen(false)}
           >
             Request Details

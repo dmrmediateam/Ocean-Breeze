@@ -130,18 +130,20 @@ export default function Hero() {
             style={{ animationDelay: "0.9s" }}
           >
             <a
-              href="#request-details-form"
+              href="#enquire"
               className="hero__cta hero__cta--primary"
               data-track-click="Request Details"
               data-track-location="hero"
+              data-open-lead-form="request_details"
             >
               Request Details
             </a>
             <a
-              href="#schedule-showing-form"
+              href="#enquire"
               className="hero__cta hero__cta--secondary"
               data-track-click="Schedule a Showing"
               data-track-location="hero"
+              data-open-lead-form="schedule_showing"
             >
               Schedule a Showing
             </a>

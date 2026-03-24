@@ -19,7 +19,13 @@ export default function FeatureSplitB() {
             over the chef&apos;s kitchen. Every room flows seamlessly toward the
             water, and every detail has been considered.
           </p>
-          <a href="#enquire" className="section-link section-link--light">
+          <a
+            href="#enquire"
+            className="section-link section-link--light"
+            data-track-click="Request Details"
+            data-track-location="interiors-section"
+            data-open-lead-form="request_details"
+          >
             Request details &rarr;
           </a>
         </div>
