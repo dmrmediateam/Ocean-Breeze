@@ -1493,6 +1493,10 @@ button {
   margin-top: 18px;
 }
 
+.enquiry-form__grid--stacked {
+  margin-top: 18px;
+}
+
 .enquiry-form input,
 .enquiry-form textarea {
   width: 100%;

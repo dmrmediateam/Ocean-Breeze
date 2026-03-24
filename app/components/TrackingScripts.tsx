@@ -168,7 +168,6 @@ const trackingScript = String.raw`(() => {
     appendLine(lines, "Full Name", data.get("fullName"));
     appendLine(lines, "Email Address", data.get("email"));
     appendLine(lines, "Phone Number", data.get("phone"));
-    appendLine(lines, "Budget", data.get("budget"));
     appendLine(lines, "Purchase Timeline", data.get("timeline"));
     appendLine(lines, "Preferred Date", data.get("preferredDate"));
     appendLine(lines, "Preferred Time", data.get("preferredTime"));

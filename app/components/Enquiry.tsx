@@ -171,9 +171,8 @@ function LeadForm({
         </div>
 
         {type === "request_details" ? (
-          <div className="enquiry-form__grid enquiry-form__grid--three">
+          <div className="enquiry-form__grid enquiry-form__grid--two enquiry-form__grid--stacked">
             <input type="text" name="phone" placeholder="Phone Number" />
-            <input type="text" name="budget" placeholder="Budget" />
             <input type="text" name="timeline" placeholder="Purchase Timeline" />
           </div>
         ) : (
