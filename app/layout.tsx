@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
+import TrackingScripts from "./components/TrackingScripts";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -38,7 +39,10 @@ export default function RootLayout({
       lang="en"
       className={`${cormorantGaramond.variable} ${jost.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <TrackingScripts />
+      </body>
     </html>
   );
 }

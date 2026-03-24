@@ -1,3 +1,35 @@
+const attributionFieldNames = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "fbclid",
+  "msclkid",
+  "ttclid",
+  "first_utm_source",
+  "first_utm_medium",
+  "first_utm_campaign",
+  "first_utm_term",
+  "first_utm_content",
+  "first_gclid",
+  "first_fbclid",
+  "first_msclkid",
+  "first_ttclid",
+  "landing_page",
+  "initial_landing_page",
+  "referrer",
+  "first_touch_at",
+  "last_touch_at",
+];
+
+function AttributionFields() {
+  return attributionFieldNames.map((name) => (
+    <input key={name} type="hidden" name={name} />
+  ));
+}
+
 export default function Enquiry() {
   return (
     <section className="enquiry" id="enquire">
@@ -9,10 +41,20 @@ export default function Enquiry() {
         </p>
 
         <div className="enquiry__actions">
-          <a href="#request-details-form" className="enquiry__action">
+          <a
+            href="#request-details-form"
+            className="enquiry__action"
+            data-track-click="Request Details"
+            data-track-location="enquiry-selector"
+          >
             Request Details
           </a>
-          <a href="#schedule-showing-form" className="enquiry__action">
+          <a
+            href="#schedule-showing-form"
+            className="enquiry__action"
+            data-track-click="Schedule a Showing"
+            data-track-location="enquiry-selector"
+          >
             Schedule a Showing
           </a>
         </div>
@@ -34,8 +76,10 @@ export default function Enquiry() {
               className="enquiry-form"
               action="mailto:info@oceanbreezetci.com"
               method="GET"
+              data-lead-form="request_details"
             >
               <input type="hidden" name="subject" value="Ocean Breeze | Request Details" />
+              <AttributionFields />
 
               <div className="enquiry-form__grid enquiry-form__grid--two">
                 <input type="text" name="fullName" placeholder="Full Name" />
@@ -76,8 +120,10 @@ export default function Enquiry() {
               className="enquiry-form"
               action="mailto:info@oceanbreezetci.com"
               method="GET"
+              data-lead-form="schedule_showing"
             >
               <input type="hidden" name="subject" value="Ocean Breeze | Schedule a Showing" />
+              <AttributionFields />
 
               <div className="enquiry-form__grid enquiry-form__grid--two">
                 <input type="text" name="fullName" placeholder="Full Name" />

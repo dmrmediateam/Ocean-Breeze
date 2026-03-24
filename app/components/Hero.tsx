@@ -129,12 +129,19 @@ export default function Hero() {
             className="hero__cta-group hero__animated"
             style={{ animationDelay: "0.9s" }}
           >
-            <a href="#request-details-form" className="hero__cta hero__cta--primary">
+            <a
+              href="#request-details-form"
+              className="hero__cta hero__cta--primary"
+              data-track-click="Request Details"
+              data-track-location="hero"
+            >
               Request Details
             </a>
             <a
               href="#schedule-showing-form"
               className="hero__cta hero__cta--secondary"
+              data-track-click="Schedule a Showing"
+              data-track-location="hero"
             >
               Schedule a Showing
             </a>

@@ -68,7 +68,12 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar__actions">
-          <a href="#enquire" className="navbar__reserve">
+          <a
+            href="#enquire"
+            className="navbar__reserve"
+            data-track-click="Request Details"
+            data-track-location="navbar"
+          >
             Request Details
           </a>
           <button
@@ -100,6 +105,8 @@ export default function Navbar() {
           <a
             href="#enquire"
             className="navbar__mobile-reserve"
+            data-track-click="Request Details"
+            data-track-location="navbar-mobile"
             onClick={() => setIsMenuOpen(false)}
           >
             Request Details
