@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const webhookUrl = process.env.ZAPIER_REQUEST_DETAILS_WEBHOOK_URL;
+const webhookUrl = "https://hooks.zapier.com/hooks/catch/21968997/up7ctxs/";
 
 export async function POST(request: Request) {
   if (!webhookUrl) {
