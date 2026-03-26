@@ -5,8 +5,8 @@ import GalleryViewer from "./GalleryViewer";
 const featuredGalleryItems = [
   {
     src: "/images/rooftop.webp",
-    alt: "Ocean Breeze rooftop pool and fire pit at golden hour",
-    label: "Rooftop Pool",
+    alt: "Ocean Breeze pool and terrace at golden hour",
+    label: "Pool",
     className: "gallery__item gallery__item--featured",
   },
   {
@@ -42,7 +42,7 @@ const imageLabels: Record<string, string> = {
   "kitchen.webp": "Gourmet Kitchen",
   "living.webp": "Living Room",
   "living2.webp": "Great Room",
-  "rooftop.webp": "Rooftop Pool",
+  "rooftop.webp": "Pool",
 };
 
 function formatImageLabel(fileName: string) {

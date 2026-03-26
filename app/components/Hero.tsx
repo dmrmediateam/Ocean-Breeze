@@ -122,7 +122,7 @@ export default function Hero() {
             style={{ animationDelay: "0.75s" }}
           >
             A newly built waterfront estate in Chalk Sound with cinematic ocean
-            views, a private dock, rooftop pool, and the level of privacy
+            views, a private dock, pool, terrace, and the level of privacy
             serious buyers rarely find on Providenciales.
           </p>
           <div

@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.oceanbreezetci.com"),
   title: "Ocean Breeze · Luxury Waterfront Villa for Sale · Turks & Caicos",
   description:
-    "Ocean Breeze is a luxury waterfront villa for sale in Turks & Caicos, offered at $6,500,000 with 6,000 interior square feet, a rooftop infinity pool, private dock, and sweeping Chalk Sound views.",
+    "Ocean Breeze is a luxury waterfront villa for sale in Turks & Caicos, offered at $6,500,000 with 6,000 interior square feet, a pool, terrace, private dock, and sweeping Chalk Sound views.",
   openGraph: {
     title: "Ocean Breeze · Luxury Waterfront Villa for Sale · Turks & Caicos",
     description:
-      "Ocean Breeze is a luxury waterfront villa for sale in Turks & Caicos, offered at $6,500,000 with 6,000 interior square feet, a rooftop infinity pool, private dock, and sweeping Chalk Sound views.",
+      "Ocean Breeze is a luxury waterfront villa for sale in Turks & Caicos, offered at $6,500,000 with 6,000 interior square feet, a pool, terrace, private dock, and sweeping Chalk Sound views.",
     images: ["/images/hero-poster.webp"],
   },
 };

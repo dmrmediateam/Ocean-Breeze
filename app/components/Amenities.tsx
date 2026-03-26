@@ -7,7 +7,7 @@ type Amenity = {
 
 const amenities: Amenity[] = [
   {
-    label: "Infinity Pool",
+    label: "Pool",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -28,7 +28,7 @@ const amenities: Amenity[] = [
     ),
   },
   {
-    label: "Rooftop Terrace",
+    label: "Terrace",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -233,9 +233,9 @@ export default function Amenities() {
             for exceptional ownership
           </h2>
           <p className="section-body">
-            From the chef&apos;s kitchen to the rooftop infinity pool, every
-            element of Ocean Breeze has been chosen to elevate refined
-            waterfront living.
+            From the chef&apos;s kitchen to the pool and terrace, every element
+            of Ocean Breeze has been chosen to elevate refined waterfront
+            living.
           </p>
         </div>
 

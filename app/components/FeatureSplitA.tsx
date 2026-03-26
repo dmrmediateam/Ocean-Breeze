@@ -6,7 +6,7 @@ export default function FeatureSplitA() {
       <div className="split-section__media">
         <Image
           src="/images/rooftop.webp"
-          alt="Rooftop infinity pool overlooking the sea"
+          alt="Pool and terrace overlooking the sea"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="split-section__image"
@@ -15,17 +15,17 @@ export default function FeatureSplitA() {
 
       <div className="split-section__content">
         <div className="split-section__content-inner">
-          <p className="section-eyebrow section-eyebrow--accent">The Rooftop</p>
+          <p className="section-eyebrow section-eyebrow--accent">The Terrace</p>
           <h2 className="section-title">
-            An infinity pool
+            A terrace
             <br />
-            above the sea
+            open to the sea
           </h2>
           <p className="section-body">
-            As the sun dips below the horizon, the rooftop transforms into the
-            most coveted seat in Turks &amp; Caicos. A heated infinity pool,
-            fire pit lounge, and 360&deg; ocean views, this is where evenings
-            begin and end.
+            As the sun dips below the horizon, the terrace becomes one of the
+            most inviting spaces at Ocean Breeze. A pool, fire pit lounge, and
+            sweeping ocean views set the tone for long afternoons and relaxed
+            evenings.
           </p>
           <a href="#gallery" className="section-link">
             See all photos &rarr;
