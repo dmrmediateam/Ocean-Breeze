@@ -1,6 +1,6 @@
 const locationStats = [
   { value: "15 min", label: "Providenciales Airport" },
-  { value: "Nearby", label: "Grace Bay Beach" },
+  { value: "5 min", label: "Sapodilla Bay Beach" },
   { value: "#1 Rated", label: "Caribbean Beach" },
 ];
 
@@ -16,9 +16,8 @@ export default function Location() {
         <h2 className="location__title">Turks &amp; Caicos Islands</h2>
         <p className="section-body location__body">
           Situated on one of the most spectacular stretches of coastline in the
-          Caribbean, Ocean Breeze places you within easy reach of Grace Bay,
-          consistently ranked among the world&apos;s finest beaches, and just
-          15 minutes from Providenciales International Airport.
+          Caribbean, Ocean Breeze places you just 5 minutes from Sapodilla Bay
+          Beach and only 15 minutes from Providenciales International Airport.
         </p>
       </div>
 
