@@ -5,6 +5,7 @@
   --color-text: #1a1a1a;
   --color-text-muted: #7a7a72;
   --color-accent: #c8a96e;
+  --color-accent-text: #8f6b35;
   --color-white: #ffffff;
 }
 
@@ -80,7 +81,7 @@ button {
 }
 
 .section-eyebrow--accent {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .section-title {
@@ -118,7 +119,7 @@ button {
   line-height: 1.3;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   transition: text-decoration-color 300ms ease, color 300ms ease;
 }
 
@@ -1065,7 +1066,7 @@ button {
   line-height: 1.4;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .location__map-address {
@@ -1229,14 +1230,14 @@ button {
 
 .enquiry__action {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 146px;
-  padding: 24px 26px;
+  align-items: center;
+  justify-content: center;
+  min-height: 104px;
+  padding: 20px 24px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 28px;
   color: var(--color-bg);
-  text-align: left;
+  text-align: center;
   transition: background-color 300ms ease, border-color 300ms ease,
     transform 300ms ease, box-shadow 300ms ease;
 }
@@ -1276,28 +1277,11 @@ button {
 }
 
 .enquiry__action-title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-}
-
-.enquiry__action-caption {
-  margin-top: 14px;
-  max-width: 15rem;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.62);
-}
-
-.enquiry__prompt {
-  margin-top: 18px;
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.34);
 }
 
 .enquiry-modal {
@@ -1602,6 +1586,10 @@ button {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
+}
+
+.enquiry-modal__dialog--request .enquiry-form__thankyou-kicker {
+  color: var(--color-accent-text);
 }
 
 .enquiry-form__thankyou-title {

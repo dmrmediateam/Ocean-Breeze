@@ -302,10 +302,6 @@ export default function Enquiry() {
       <section className="enquiry" id="enquire">
         <div className="enquiry__inner">
           <p className="enquiry__heading">Take the next step</p>
-          <p className="enquiry__subtext">
-            Choose the path that fits your buying process, whether you want the
-            full investment package or a private tour of Ocean Breeze.
-          </p>
 
           <div className="enquiry__actions">
             <button
@@ -316,9 +312,6 @@ export default function Enquiry() {
               onClick={() => setActiveForm("request_details")}
             >
               <span className="enquiry__action-title">Request Details</span>
-              <span className="enquiry__action-caption">
-                Pricing, ownership, brochure
-              </span>
             </button>
 
             <button
@@ -329,14 +322,7 @@ export default function Enquiry() {
               onClick={() => setActiveForm("schedule_showing")}
             >
               <span className="enquiry__action-title">Schedule a Showing</span>
-              <span className="enquiry__action-caption">
-                Private tour, tailored timing
-              </span>
             </button>
-          </div>
-
-          <div className="enquiry__prompt">
-            Open the form that matches the conversation you want to start.
           </div>
         </div>
       </section>
