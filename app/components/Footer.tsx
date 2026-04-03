@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = [
-  { href: "#gallery", label: "Gallery" },
-  { href: "#amenities", label: "Amenities" },
-  { href: "#location", label: "Location" },
-  { href: "#enquire", label: "Enquire" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#amenities", label: "Amenities" },
+  { href: "/#location", label: "Location" },
+  { href: "/#inquire", label: "Inquire" },
 ];
 
 export default function Footer() {
@@ -25,9 +26,9 @@ export default function Footer() {
 
         <nav className="footer__nav" aria-label="Footer navigation">
           {footerLinks.map((link) => (
-            <a key={link.href} href={link.href} className="footer__link">
+            <Link key={link.href} href={link.href} className="footer__link">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

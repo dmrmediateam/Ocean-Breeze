@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "#gallery", label: "Gallery" },
-  { href: "#amenities", label: "Amenities" },
-  { href: "#location", label: "Location" },
-  { href: "#enquire", label: "Enquire" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#amenities", label: "Amenities" },
+  { href: "/#location", label: "Location" },
+  { href: "/#inquire", label: "Inquire" },
 ];
 
 export default function Navbar() {
@@ -47,7 +48,7 @@ export default function Navbar() {
       }`}
     >
       <div className="navbar__inner">
-        <a className="navbar__brand" href="#top" aria-label="Ocean Breeze home">
+        <Link className="navbar__brand" href="/" aria-label="Ocean Breeze home">
           <Image
             src="/images/OBLogo.png"
             alt="Ocean Breeze monogram"
@@ -57,26 +58,26 @@ export default function Navbar() {
             sizes="40px"
             className="navbar__brand-image"
           />
-        </a>
+        </Link>
 
         <nav className="navbar__links" aria-label="Primary navigation">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="navbar__link">
+            <Link key={link.href} href={link.href} className="navbar__link">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="navbar__actions">
-          <a
-            href="#enquire"
+          <Link
+            href="/#inquire"
             className="navbar__reserve"
             data-track-click="Request Details"
             data-track-location="navbar"
             data-open-lead-form="request_details"
           >
             Request Details
-          </a>
+          </Link>
           <button
             type="button"
             className="navbar__toggle"
@@ -94,17 +95,17 @@ export default function Navbar() {
       <div className="navbar__mobile">
         <nav className="navbar__mobile-links" aria-label="Mobile navigation">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="navbar__mobile-link"
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#enquire"
+          <Link
+            href="/#inquire"
             className="navbar__mobile-reserve"
             data-track-click="Request Details"
             data-track-location="navbar-mobile"
@@ -112,7 +113,7 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(false)}
           >
             Request Details
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

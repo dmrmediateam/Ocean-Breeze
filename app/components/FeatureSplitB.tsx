@@ -20,7 +20,7 @@ export default function FeatureSplitB() {
             water, and every detail has been considered.
           </p>
           <a
-            href="#enquire"
+            href="#inquire"
             className="section-link section-link--light"
             data-track-click="Request Details"
             data-track-location="interiors-section"

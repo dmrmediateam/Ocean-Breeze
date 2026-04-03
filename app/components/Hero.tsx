@@ -130,7 +130,7 @@ export default function Hero() {
             style={{ animationDelay: "0.9s" }}
           >
             <a
-              href="#enquire"
+              href="#inquire"
               className="hero__cta hero__cta--primary"
               data-track-click="Request Details"
               data-track-location="hero"
@@ -139,7 +139,7 @@ export default function Hero() {
               Request Details
             </a>
             <a
-              href="#enquire"
+              href="#inquire"
               className="hero__cta hero__cta--secondary"
               data-track-click="Schedule a Showing"
               data-track-location="hero"

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
@@ -39,11 +40,9 @@ type LeadFormConfig = {
   submitLabel: string;
   theme: "request" | "showing";
   endpoint: string;
-  successTitle: string;
-  successBody: string;
 };
 
-type LeadFormStatus = "idle" | "submitting" | "success" | "error";
+type LeadFormStatus = "idle" | "submitting" | "error";
 
 const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
   request_details: {
@@ -54,9 +53,6 @@ const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
     submitLabel: "Request Details",
     theme: "request",
     endpoint: "/api/request-details",
-    successTitle: "Thank you for your interest",
-    successBody:
-      "Your request has been received. The Ocean Breeze sales team will share the brochure, pricing context, and ownership details shortly.",
   },
   schedule_showing: {
     eyebrow: "Schedule a Showing",
@@ -66,9 +62,6 @@ const leadFormConfig: Record<LeadFormType, LeadFormConfig> = {
     submitLabel: "Schedule a Showing",
     theme: "showing",
     endpoint: "/api/schedule-showing",
-    successTitle: "Your showing request is in",
-    successBody:
-      "Thank you. The team has your preferred timing and will follow up to confirm the best showing window for Ocean Breeze.",
   },
 };
 
@@ -85,9 +78,14 @@ function LeadForm({
   type: LeadFormType;
   onClose: () => void;
 }) {
+  const router = useRouter();
   const config = leadFormConfig[type];
   const [submitStatus, setSubmitStatus] = useState<LeadFormStatus>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+
+  useEffect(() => {
+    router.prefetch("/thank-you");
+  }, [router]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -116,9 +114,8 @@ function LeadForm({
         throw new Error("Submission failed");
       }
 
-      setSubmitStatus("success");
-      setSubmitMessage(config.successBody);
-      form.reset();
+      const params = new URLSearchParams({ lead: type });
+      router.push(`/thank-you?${params.toString()}`);
     } catch {
       setSubmitStatus("error");
       setSubmitMessage(
@@ -193,22 +190,7 @@ function LeadForm({
           }
         />
 
-        {submitStatus === "success" ? (
-          <div className="enquiry-form__thankyou" aria-live="polite">
-            <p className="enquiry-form__thankyou-kicker">{config.eyebrow}</p>
-            <h4 className="enquiry-form__thankyou-title">{config.successTitle}</h4>
-            <p className="enquiry-form__thankyou-body">{submitMessage}</p>
-            <button
-              type="button"
-              className="enquiry-form__submit"
-              onClick={onClose}
-            >
-              Continue Browsing
-            </button>
-          </div>
-        ) : null}
-
-        {submitStatus !== "success" && submitMessage ? (
+        {submitMessage ? (
           <p
             className={`enquiry-form__status enquiry-form__status--${submitStatus}`}
             aria-live="polite"
@@ -217,15 +199,13 @@ function LeadForm({
           </p>
         ) : null}
 
-        {submitStatus !== "success" ? (
-          <button
-            type="submit"
-            className="enquiry-form__submit"
-            disabled={submitStatus === "submitting"}
-          >
-            {submitStatus === "submitting" ? "Sending..." : config.submitLabel}
-          </button>
-        ) : null}
+        <button
+          type="submit"
+          className="enquiry-form__submit"
+          disabled={submitStatus === "submitting"}
+        >
+          {submitStatus === "submitting" ? "Sending..." : config.submitLabel}
+        </button>
       </form>
     </div>
   );
@@ -299,7 +279,7 @@ export default function Enquiry() {
 
   return (
     <>
-      <section className="enquiry" id="enquire">
+      <section className="enquiry" id="inquire">
         <div className="enquiry__inner">
           <p className="enquiry__heading">Take the next step</p>
 
