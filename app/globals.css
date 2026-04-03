@@ -1642,9 +1642,9 @@ button {
 .thank-you-page {
   min-height: 100svh;
   background:
-    radial-gradient(circle at top left, rgba(141, 179, 194, 0.12), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent 28%),
-    linear-gradient(180deg, #0b0d10 0%, #101418 42%, #171d22 100%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(14, 14, 14, 0.05), transparent 22%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
 }
 
 .thank-you-hero {
@@ -1668,7 +1668,7 @@ button {
   left: -100px;
   width: 280px;
   height: 280px;
-  background: radial-gradient(circle, rgba(117, 157, 175, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 70%);
 }
 
 .thank-you-hero__ambient--right {
@@ -1676,7 +1676,7 @@ button {
   bottom: 40px;
   width: 320px;
   height: 320px;
-  background: radial-gradient(circle, rgba(85, 124, 142, 0.18), transparent 72%);
+  background: radial-gradient(circle, rgba(14, 14, 14, 0.05), transparent 72%);
 }
 
 .thank-you-hero__inner {
@@ -1696,7 +1696,7 @@ button {
 }
 
 .thank-you-hero .section-eyebrow {
-  color: rgba(247, 244, 238, 0.58);
+  color: rgba(26, 26, 26, 0.46);
 }
 
 .thank-you-hero__title {
@@ -1706,7 +1706,7 @@ button {
   font-weight: 300;
   line-height: 0.96;
   letter-spacing: -0.04em;
-  color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .thank-you-hero__body {
@@ -1715,7 +1715,7 @@ button {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.8;
-  color: rgba(247, 244, 238, 0.66);
+  color: var(--color-text-muted);
 }
 
 .thank-you-hero__actions {
@@ -1731,7 +1731,7 @@ button {
   justify-content: center;
   min-width: 206px;
   padding: 15px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(14, 14, 14, 0.12);
   border-radius: 999px;
   font-size: 11px;
   font-weight: 400;
@@ -1747,36 +1747,40 @@ button {
 }
 
 .thank-you-hero__cta--primary {
-  color: var(--color-black);
-  background: var(--color-bg);
-  border-color: rgba(247, 244, 238, 0.86);
+  color: var(--color-white);
+  background: var(--color-black);
+  border-color: var(--color-black);
 }
 
 .thank-you-hero__cta--primary:hover {
-  background: rgba(247, 244, 238, 0.92);
-  border-color: rgba(247, 244, 238, 0.92);
+  background: rgba(14, 14, 14, 0.9);
+  border-color: rgba(14, 14, 14, 0.9);
 }
 
 .thank-you-hero__cta--secondary {
-  color: var(--color-bg);
-  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.42);
+  border-color: rgba(14, 14, 14, 0.1);
 }
 
 .thank-you-hero__cta--secondary:hover {
-  color: var(--color-black);
-  background: var(--color-bg);
-  border-color: var(--color-bg);
+  color: var(--color-white);
+  background: var(--color-black);
+  border-color: var(--color-black);
 }
 
 .thank-you-hero__panel {
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   align-self: stretch;
   max-height: 560px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(7, 9, 11, 0.18));
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(12px);
+  border: 1px solid rgba(14, 14, 14, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .thank-you-hero__panel::before {
@@ -1785,18 +1789,23 @@ button {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.34) 0%,
     rgba(255, 255, 255, 0) 20%,
-    rgba(0, 0, 0, 0.18) 100%
+    rgba(14, 14, 14, 0.02) 100%
   );
   pointer-events: none;
 }
 
 .thank-you-hero__image-wrap {
   position: relative;
-  height: calc(100% - 132px);
-  min-height: 320px;
+  height: calc(100% - 156px);
+  min-height: 300px;
+  flex: 1 1 auto;
   overflow: hidden;
+  margin: 18px 18px 0;
+  border: 1px solid rgba(14, 14, 14, 0.08);
+  border-radius: 20px 20px 0 0;
+  background: var(--color-white);
 }
 
 .thank-you-hero__image {
@@ -1806,7 +1815,7 @@ button {
 .thank-you-hero__panel-copy {
   position: relative;
   z-index: 1;
-  padding: 28px 28px 32px;
+  padding: 26px 30px 42px;
 }
 
 .thank-you-hero__panel-kicker {
@@ -1815,16 +1824,17 @@ button {
   line-height: 1.4;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(247, 244, 238, 0.44);
+  color: rgba(26, 26, 26, 0.42);
 }
 
 .thank-you-hero__panel-title {
   margin-top: 10px;
+  max-width: 18rem;
   font-family: var(--font-cormorant), serif;
   font-size: 28px;
   font-weight: 300;
   line-height: 1.08;
-  color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .footer {

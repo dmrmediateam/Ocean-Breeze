@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <>
-      <Navbar />
+      <Navbar alwaysSolid />
       <main className="thank-you-page">
         <section className="thank-you-hero">
           <div className="thank-you-hero__ambient thank-you-hero__ambient--left" />

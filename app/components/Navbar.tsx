@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/#inquire", label: "Inquire" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ alwaysSolid = false }: { alwaysSolid?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -43,7 +43,9 @@ export default function Navbar() {
 
   return (
     <header
-      className={`navbar ${isScrolled ? "is-scrolled" : ""} ${
+      className={`navbar ${alwaysSolid ? "is-scrolled" : ""} ${
+        isScrolled ? "is-scrolled" : ""
+      } ${
         isMenuOpen ? "is-menu-open" : ""
       }`}
     >
