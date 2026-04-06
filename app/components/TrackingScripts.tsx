@@ -236,6 +236,18 @@ const trackingScript = String.raw`(() => {
       landing_page: toText(data.get("landing_page")),
     });
 
+    if (typeof gtag === "function") {
+      gtag("event", "generate_lead", {
+        event_category: "lead",
+        event_label: formType,
+        lead_form: formType,
+        utm_source: toText(data.get("utm_source")),
+        utm_medium: toText(data.get("utm_medium")),
+        utm_campaign: toText(data.get("utm_campaign")),
+        landing_page: toText(data.get("landing_page")),
+      });
+    }
+
     const action = target.getAttribute("action") || "";
 
     if (!action.startsWith("mailto:")) {
