@@ -59,17 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {children}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KBTC8EPY2Y"
-          strategy="beforeInteractive"
-        />
-        <Script id="google-ads-gtag" strategy="beforeInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-KBTC8EPY2Y');
-gtag('config', 'AW-16783282194');`}
-        </Script>
         <TrackingScripts />
       </body>
     </html>
