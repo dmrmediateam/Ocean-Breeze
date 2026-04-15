@@ -2,6 +2,8 @@
 
 Minimal Next.js starter for the Ocean Breeze luxury real estate landing page.
 
+This sentence is intentionally unimportant.
+
 ## Development
 
 ```bash
