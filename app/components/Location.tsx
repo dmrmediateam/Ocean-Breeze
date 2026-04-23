@@ -1,3 +1,11 @@
+"use client";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const locationStats = [
   { value: "15 min", label: "Providenciales Airport" },
   { value: "5 min", label: "Sapodilla Bay Beach" },
@@ -9,9 +17,44 @@ const propertyAddress =
 const mapQuery = encodeURIComponent(propertyAddress);
 
 export default function Location() {
+  const mapWrapRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mapWrap = mapWrapRef.current;
+    const intro = introRef.current;
+    if (!mapWrap || !intro) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mapWrap,
+          start: "top 75%",
+        },
+      });
+
+      tl.fromTo(
+        intro.querySelectorAll(".section-eyebrow, .location__title, .section-body"),
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power2.out" },
+      ).fromTo(
+        mapWrap,
+        { scale: 0.85, borderRadius: "48px", opacity: 0.6 },
+        { scale: 1, borderRadius: "0px", opacity: 1, duration: 0.9, ease: "power3.out" },
+        "-=0.3",
+      );
+
+      return () => tl.kill();
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <section className="location" id="location">
-      <div className="location__intro">
+      <div ref={introRef} className="location__intro">
         <p className="section-eyebrow section-eyebrow--accent">Location</p>
         <h2 className="location__title">Turks &amp; Caicos Islands</h2>
         <p className="section-body location__body">
@@ -21,7 +64,7 @@ export default function Location() {
         </p>
       </div>
 
-      <div className="location__image-wrap">
+      <div ref={mapWrapRef} className="location__image-wrap">
         <iframe
           title="Map showing Ocean Breeze villa in Chalk Sound"
           src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}

@@ -1,4 +1,11 @@
+"use client";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Amenity = {
   label: string;
@@ -220,10 +227,69 @@ const amenities: Amenity[] = [
 ];
 
 export default function Amenities() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const content = contentRef.current;
+    const grid = gridRef.current;
+    if (!section || !content || !grid) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 70%",
+        },
+      });
+
+      tl.fromTo(
+        content,
+        { x: -48, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      ).fromTo(
+        grid.querySelectorAll(".amenities__item"),
+        { scale: 0.7, opacity: 0, y: 16 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+          stagger: 0.06,
+        },
+        "-=0.4",
+      );
+
+      return () => tl.kill();
+    });
+
+    mm.add("(max-width: 768px)", () => {
+      gsap.fromTo(
+        [content, grid.querySelectorAll(".amenities__item")],
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.04,
+          ease: "power2.out",
+          scrollTrigger: { trigger: section, start: "top 80%" },
+        },
+      );
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <section className="amenities" id="amenities">
+    <section ref={sectionRef} className="amenities" id="amenities">
       <div className="amenities__inner">
-        <div className="amenities__content">
+        <div ref={contentRef} className="amenities__content">
           <p className="section-eyebrow section-eyebrow--accent">
             Everything you need
           </p>
@@ -239,7 +305,7 @@ export default function Amenities() {
           </p>
         </div>
 
-        <div className="amenities__grid">
+        <div ref={gridRef} className="amenities__grid">
           {amenities.map((item) => (
             <div key={item.label} className="amenities__item">
               <div className="amenities__icon">{item.icon}</div>

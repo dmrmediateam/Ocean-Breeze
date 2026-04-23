@@ -11,6 +11,24 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer className="footer">
+      <div className="footer__cta-row">
+        <div className="footer__cta-row-inner">
+          <p className="footer__cta-row-heading">Request the full listing package</p>
+          <p className="footer__cta-row-sub">
+            Pricing support material, ownership details, and a direct response from the sales team.
+          </p>
+          <Link
+            href="/#inquire"
+            className="footer__cta-row-button"
+            data-track-click="Request Details"
+            data-track-location="footer-cta-row"
+            data-open-lead-form="request_details"
+          >
+            Request Details &rarr;
+          </Link>
+        </div>
+      </div>
+
       <div className="footer__top">
         <div className="footer__brand">
           <Image

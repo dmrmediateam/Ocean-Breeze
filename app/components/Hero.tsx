@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function MutedIcon() {
   return (
@@ -72,8 +72,27 @@ export default function Hero() {
     setIsMuted(nextMuted);
   };
 
+  // Preload hero poster image
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = "/images/hero-poster.webp";
+    document.head.appendChild(link);
+    return () => {
+      if (link.parentNode === document.head) {
+        document.head.removeChild(link);
+      }
+    };
+  }, []);
+
   return (
     <section className="hero" id="top">
+      {/* Film grain overlay */}
+      <div className="hero__grain" aria-hidden="true" />
+      {/* Radial vignette */}
+      <div className="hero__vignette" aria-hidden="true" />
+
       <video
         ref={videoRef}
         className="hero__video"
@@ -91,7 +110,14 @@ export default function Hero() {
 
       <div className="hero__content">
         <div className="hero__copy">
-          <p className="hero__eyebrow hero__animated">Turks &amp; Caicos Islands</p>
+          <div className="hero__eyebrow-wrap hero__animated">
+            <span className="hero__eyebrow-dash" aria-hidden="true" />
+            <p className="hero__eyebrow">Turks &amp; Caicos Islands</p>
+          </div>
+
+          {/* Gold accent vertical line */}
+          <div className="hero__accent-line hero__animated" style={{ animationDelay: "0.1s" }} aria-hidden="true" />
+
           <h1 className="hero__title">
             <span className="hero__title-line hero__animated">Ocean</span>
             <span
@@ -107,6 +133,12 @@ export default function Hero() {
           >
             Waterfront Villa &middot; Chalk Sound &middot; 5 Bedrooms
           </p>
+          {/* Gold gradient separator */}
+          <div
+            className="hero__separator hero__animated"
+            style={{ animationDelay: "0.55s" }}
+            aria-hidden="true"
+          />
           <div
             className="hero__price hero__animated"
             style={{ animationDelay: "0.6s" }}
@@ -136,7 +168,8 @@ export default function Hero() {
               data-track-location="hero"
               data-open-lead-form="request_details"
             >
-              Request Details
+              <span className="hero__cta-label">Request Details</span>
+              <span className="hero__cta-arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a
               href="#inquire"
@@ -160,7 +193,7 @@ export default function Hero() {
             {isMuted ? <MutedIcon /> : <UnmutedIcon />}
           </button>
 
-          <a href="#property" className="hero__scroll-indicator">
+          <a href="#property" className="hero__scroll-indicator hero__animated" style={{ animationDelay: "1.55s" }}>
             <span className="hero__scroll-line" />
             <span className="hero__scroll-text">scroll</span>
           </a>

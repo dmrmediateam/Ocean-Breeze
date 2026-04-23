@@ -1,14 +1,15 @@
 import Amenities from "./components/Amenities";
+import CinematicBreak from "./components/CinematicBreak";
 import Enquiry from "./components/Enquiry";
 import FeatureSplitA from "./components/FeatureSplitA";
 import FeatureSplitB from "./components/FeatureSplitB";
 import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 import Hero from "./components/Hero";
-import Intro from "./components/Intro";
+import ImageStrip from "./components/ImageStrip";
+import InvestmentStats from "./components/InvestmentStats";
 import Location from "./components/Location";
 import Navbar from "./components/Navbar";
-import VideoFeature from "./components/VideoFeature";
 
 export default function Home() {
   return (
@@ -16,12 +17,13 @@ export default function Home() {
       <Navbar />
       <main className="site-shell">
         <Hero />
-        <VideoFeature />
-        <Intro />
+        <ImageStrip />
         <Gallery />
         <Amenities />
         <FeatureSplitA />
         <FeatureSplitB />
+        <CinematicBreak />
+        <InvestmentStats />
         <Location />
         <Enquiry />
       </main>

@@ -1919,6 +1919,436 @@ button {
   }
 }
 
+/* ─── Hero cinematic enhancements ─────────────────────────────────────────── */
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.56) 100%);
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  animation: hero-video-focus 1800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes hero-video-focus {
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero__eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero__eyebrow-dash {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  animation: hero-dash-grow 600ms cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+@keyframes hero-dash-grow {
+  to {
+    width: 32px;
+  }
+}
+
+.hero__eyebrow {
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero__accent-line {
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--color-accent), rgba(200, 169, 110, 0));
+  margin: 16px 0 4px;
+  animation: hero-line-grow 600ms cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+@keyframes hero-line-grow {
+  to {
+    height: 120px;
+  }
+}
+
+.hero__separator {
+  width: 64px;
+  height: 1px;
+  margin-top: 20px;
+  background: linear-gradient(to right, var(--color-accent), rgba(200, 169, 110, 0));
+}
+
+.hero__cta--primary {
+  color: var(--color-black);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  gap: 10px;
+}
+
+.hero__cta--primary:hover {
+  background: #d4b67a;
+  border-color: #d4b67a;
+  box-shadow: 0 8px 32px rgba(200, 169, 110, 0.45);
+}
+
+.hero__cta-arrow {
+  display: inline-block;
+  transition: transform 300ms ease;
+}
+
+.hero__cta--primary:hover .hero__cta-arrow {
+  transform: translateX(4px);
+}
+
+.hero__cta--secondary {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.hero__scroll-indicator {
+  animation: hero-scroll-pulse 2.4s ease-in-out 2s infinite;
+}
+
+@keyframes hero-scroll-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
+/* ─── Image Strip ──────────────────────────────────────────────────────────── */
+
+.image-strip {
+  background: var(--color-black);
+  overflow: hidden;
+  padding: 0;
+  line-height: 0;
+}
+
+.image-strip__viewport {
+  overflow: hidden;
+  cursor: grab;
+}
+
+.image-strip__viewport:active {
+  cursor: grabbing;
+}
+
+.image-strip__track {
+  display: flex;
+  gap: 12px;
+  will-change: transform;
+  backface-visibility: hidden;
+  padding: 48px 0;
+}
+
+.image-strip__item {
+  flex: 0 0 320px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.image-strip__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* ─── Cinematic Break ──────────────────────────────────────────────────────── */
+
+/* Tall wrapper provides scroll travel; the inner .cinematic-break is sticky */
+.cinematic-break-wrap {
+  height: 250vh;
+  background: var(--color-black);
+}
+
+.cinematic-break {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--color-black);
+}
+
+.cinematic-break__image {
+  position: absolute;
+  inset: 0;
+  background: url("/images/dock-sunset.webp") center / cover no-repeat;
+  will-change: transform;
+}
+
+.cinematic-break__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 1;
+}
+
+.cinematic-break__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.cinematic-break__quote {
+  max-width: 680px;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(28px, 4.5vw, 54px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--color-white);
+  text-align: center;
+  text-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+/* ─── Investment Stats ─────────────────────────────────────────────────────── */
+
+.investment-stats {
+  padding: 120px 60px;
+  background: var(--color-black);
+}
+
+.investment-stats__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.investment-stats__header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.investment-stats__title {
+  margin-top: 18px;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-bg);
+}
+
+.investment-stats__title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.investment-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.investment-stats__card {
+  padding: 40px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.investment-stats__card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(200, 169, 110, 0.18);
+}
+
+.investment-stats__value {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.investment-stats__label {
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.investment-stats__desc {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* ─── Floating CTA ─────────────────────────────────────────────────────────── */
+
+.floating-cta {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 60;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+.floating-cta--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.floating-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-black);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 32px rgba(200, 169, 110, 0.4), 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+  white-space: nowrap;
+}
+
+.floating-cta__button:hover {
+  background: #d4b67a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(200, 169, 110, 0.5), 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Scroll Progress Bar ──────────────────────────────────────────────────── */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 3px;
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--color-accent), #e8c87e);
+  transition: width 60ms linear;
+}
+
+/* ─── Footer CTA Row ───────────────────────────────────────────────────────── */
+
+.footer__cta-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 72px 60px;
+}
+
+.footer__cta-row-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer__cta-row-heading {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--color-bg);
+}
+
+.footer__cta-row-sub {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.footer__cta-row-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  padding: 18px 40px;
+  border: 1px solid rgba(200, 169, 110, 0.4);
+  border-radius: 999px;
+  background: rgba(200, 169, 110, 0.1);
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, transform 300ms ease;
+}
+
+.footer__cta-row-button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+/* ─── Navbar active link ───────────────────────────────────────────────────── */
+
+.navbar__link.is-active {
+  color: var(--color-accent);
+  position: relative;
+}
+
+.navbar__link.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-accent);
+}
+
 @media (max-width: 1024px) {
   .navbar__inner {
     gap: 20px;
@@ -1980,6 +2410,25 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .investment-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .investment-stats {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .footer__cta-row {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .floating-cta {
+    bottom: 20px;
+    right: 20px;
+  }
+
   .location__address-block {
     margin-top: 16px;
   }
@@ -2018,6 +2467,42 @@ button {
 
   .hero__price-meta {
     max-width: 320px;
+  }
+
+  .image-strip__item {
+    flex-basis: 240px;
+    height: 160px;
+  }
+
+  .cinematic-break-wrap {
+    height: 170vh;
+  }
+
+  .cinematic-break {
+    height: 70vh;
+  }
+
+  .investment-stats {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .investment-stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .investment-stats__card {
+    padding: 32px 24px;
+  }
+
+  .footer__cta-row {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .floating-cta__button {
+    padding: 14px 22px;
+    font-size: 10px;
   }
 
   .video-feature {

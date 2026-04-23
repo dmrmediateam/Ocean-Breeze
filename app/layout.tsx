@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import Script from "next/script";
+import FloatingCTA from "./components/FloatingCTA";
+import ScrollProgressBar from "./components/ScrollProgressBar";
 import TrackingScripts from "./components/TrackingScripts";
 import "./globals.css";
 
@@ -59,6 +61,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {children}
+        <FloatingCTA />
+        <ScrollProgressBar />
         <TrackingScripts />
       </body>
     </html>
